@@ -11,6 +11,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -19,16 +22,19 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    use sluggable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    /* protected $fillable = [
         'name',
         'email',
         'password',
-    ];
+    ]; */
+    protected $guarded =['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -66,7 +72,18 @@ class User extends Authenticatable
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('name', 'like', '%'.$query.'%')
-                ->orWhere('email', 'like', '%'.$query.'%');
+            : static::where('name', 'like', '%' . $query . '%')
+            ->orWhere('email', 'like', '%' . $query . '%');
+    }
+    public function sluggable(): array
+    {
+        return [
+            'username' => [
+                'source' => 'name',
+                'separator' => '',
+                'maxLength' => 12,
+
+            ]
+        ];
     }
 }

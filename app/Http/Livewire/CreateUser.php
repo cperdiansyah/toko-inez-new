@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -12,6 +13,9 @@ class CreateUser extends Component
     public $userId;
     public $action;
     public $button;
+
+    public $username;
+
 
     protected function getRules()
     {
@@ -38,6 +42,8 @@ class CreateUser extends Component
         if ( !empty($password) ) {
             $this->user['password'] = Hash::make($password);
         }
+
+        $this->user['username'] = $this->username;
 
         User::create($this->user);
 
@@ -67,6 +73,11 @@ class CreateUser extends Component
         }
 
         $this->button = create_button($this->action, "User");
+    }
+
+    public function generateUsername()
+    {
+        $this->username = SlugService::createSlug(User::class, 'username', $this->user->name);
     }
 
     public function render()

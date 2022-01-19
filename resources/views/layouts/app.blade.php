@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+
+<title> @isset($title) {{ $title }} | Admin Toko Inez @else
+        {{ config('app.name', 'Admin Toko Inez') }}@endisset </title>
 
     @isset($meta)
         {{ $meta }}
@@ -28,6 +31,9 @@
     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
         media="all">
     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
 
     <livewire:styles />
 
@@ -35,7 +41,7 @@
     <script defer src="{{ asset('vendor/alpine.js') }}"></script>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/vendor.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/vendor.js') }}" defer></script>s --}}
     <script src="{{ asset('js/vendor~utils-1.js') }}" defer></script>
     <script src="{{ asset('js/manifest.js') }}" defer></script>
 

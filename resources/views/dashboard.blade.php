@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="title">Dashboard</x-slot>
+
     <x-slot name="header_content">
         <h1>Dashboard</h1>
         <div class="section-header-breadcrumb">
@@ -9,6 +11,6 @@
     </x-slot>
 
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-        <x-jet-welcome />
+        {{-- <x-jet-welcome /> --}}
     </div>
 </x-app-layout>

@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('name', 'like', '%' . $query . '%');
+    }
+    public function sluggable(): array
+    {
+        return [
+            'username' => [
+                'source' => 'name',
+                'separator' => '',
+                'maxLength' => 12,
+
+            ]
+        ];
+    }
 }
