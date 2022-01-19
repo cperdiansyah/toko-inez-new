@@ -25,11 +25,11 @@
             </div>
         </section>
 
-        {{-- @include('components.carousel')
+        @include('components.carousel')
 
         @include('components.category-minimal')
 
-        @include('components.product-minimal') --}}
+        @include('components.product-minimal')
     </div>
 
     @if (session()->has('loginAdminError'))

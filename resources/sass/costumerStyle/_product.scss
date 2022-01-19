@@ -3,7 +3,8 @@
 section#product-page {
     min-height: 600px;
     margin-bottom: 4rem;
-    input {
+
+    input:not([type="radio"]) {
         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
     }
     .filter-product {

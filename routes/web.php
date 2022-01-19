@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
+| --------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -14,14 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('customer.home');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/products', function () {
+    return view('customer.products', [
+        'title' => 'Product',
+        'products' => Product::all(),
+        'categories' => Category::all(),
+        'user' => Auth::user(),
+    ]);
 });
 
 Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::view('/dashboard', "dashboard")->name('dashboard');
 
     Route::get('/user', [UserController::class, "index_view"])->name('user');
+
     Route::view('/user/new', "pages.user.user-new")->name('user.new');
+    
     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 });
