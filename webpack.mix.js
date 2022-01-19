@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,9 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css')
-    .postCss('resources/css/tailwind.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ]);
+mix.js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css")
+    .sass("resources/sass/app.scss", "public/css")
+    .sass("resources/sass/style.scss", "public/css")
+    .sass("resources/sass/style_admin.scss", "public/css")
+    .browserSync({
+        proxy: "http://toko-inez-new.test/",
+        files: ["**/*.js", "**/*.css", "**/*.php"]
+    });
+/* .postCss("resources/css/tailwind.css", "public/css", [
+        require("postcss-import"),
+        require("tailwindcss")
+    ]) */
+
+mix.extract(["axios"], "js/vendor~utils-1.js");
+mix.extract();

@@ -1,0 +1,39 @@
+@import "./components/search";
+
+section#product-page {
+    min-height: 600px;
+    margin-bottom: 4rem;
+    input {
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    }
+    .filter-product {
+        .card {
+            margin: 1rem 0;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+            padding: 0 0.5rem;
+
+            h5.card-title {
+                margin-bottom: 1rem;
+            }
+
+            .form-check {
+                margin-bottom: 0.5rem;
+
+                label {
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .product-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+
+        .grid-item {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
