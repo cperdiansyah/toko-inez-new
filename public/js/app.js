@@ -17424,17 +17424,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -17451,13 +17440,13 @@ function dataTableController(id) {
       var _this = this;
 
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Apa kamu yakin?',
+        text: "Data yang dihapus tidak dapat dikembalikan!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Ya, Silahkan hapus!'
       }).then(function (result) {
         if (result.isConfirmed) {
           Livewire.emit('deleteItem', _this.id);
@@ -17554,17 +17543,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/style_admin.scss ./resources/css/app.css ***!
-  \***************************************************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/style_admin.scss ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\sass\app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\sass\style.scss */"./resources/sass/style.scss");
-__webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\sass\style_admin.scss */"./resources/sass/style_admin.scss");
-module.exports = __webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! C:\laragon\www\toko-inez-new\resources\sass\style_admin.scss */"./resources/sass/style_admin.scss");
 
 
 /***/ })

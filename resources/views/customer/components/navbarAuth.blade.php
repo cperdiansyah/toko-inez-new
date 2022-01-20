@@ -12,12 +12,6 @@
              'icon' => 'fas fa-cog',
              'role' => 'user',
          ],
-         [
-             'url' => '/logout',
-             'title' => 'Keluar',
-             'icon' => 'fas fa-sign-out-alt',
-             'role' => 'user',
-         ],
      ];
      $profileLink = array_to_object($links);
      
@@ -94,6 +88,16 @@
                              {{ $link->title }}</a>
                      </li>
                  @endforeach
+                 <li>
+                     <form method="POST" action="{{ route('logout') }}">
+                         @csrf
+
+                         <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
+                             onclick="event.preventDefault();this.closest('form').submit();">
+                             <i class="fas fa-sign-out-alt"></i> Keluar
+                         </a>
+                     </form>
+                 </li>
 
              </ul>
          </div>

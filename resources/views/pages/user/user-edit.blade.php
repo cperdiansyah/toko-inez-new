@@ -5,9 +5,9 @@
         <h1>{{ __('Edit User') }}</h1>
 
         <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Pengguna</a></div>
-            <div class="breadcrumb-item"><a href="{{ route('user') }}">Edit Pengguna</a></div>
+            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('user') }}">Pengguna</a></div>
+            <div class="breadcrumb-item"><a href="#">Edit Pengguna</a></div>
         </div>
     </x-slot>
 

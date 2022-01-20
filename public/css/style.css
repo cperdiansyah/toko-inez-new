@@ -1,7 +1,15 @@
 @import url(https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;
 
 600;700;800&display=swap);/* Font */
+.main-content {
+  padding-top: 70px;
+}
 
+/* Variabels  */
+
+/* Variables */
+
+/* Base style */
 
 * {
   margin: 0;
@@ -84,12 +92,6 @@
   margin-left: auto;
   padding: 0 3%;
 }
-
-.main-content {
-  padding-top: 70px;
-}
-
-/* Variabels  */
 
 /* Mainpage Style */
 

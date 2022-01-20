@@ -2,7 +2,7 @@
 $user = auth()->user();
 @endphp
 
-<div class="navbar-bg"></div>
+<div class="navbar-bg bg-purple"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -24,7 +24,11 @@ $user = auth()->user();
 
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="/user/profile" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                    <span class="material-icons-outlined">
+                        person
+                    </span>
+
+                    Profile
                 </a>
                 <a href="/setting" class="dropdown-item has-icon">
                     <span class="material-icons">settings

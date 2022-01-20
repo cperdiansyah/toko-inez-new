@@ -2,7 +2,7 @@
     <x-slot name="title">Data Pengguna</x-slot>
 
     <x-slot name="header_content">
-        <h1>{{ __('Data User') }}</h1>
+        <h1>{{ __('Data Pengguna') }}</h1>
 
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>

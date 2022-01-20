@@ -3427,6 +3427,8 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li > a {
 }
 body.sidebar-mini .main-sidebar .sidebar-menu > li > a .ion,
 body.sidebar-mini .main-sidebar .sidebar-menu > li > a .fas,
+body.sidebar-mini .main-sidebar .sidebar-menu > li > a .material-icons-outlined,
+body.sidebar-mini .main-sidebar .sidebar-menu > li > a .material-icons,
 body.sidebar-mini .main-sidebar .sidebar-menu > li > a .far,
 body.sidebar-mini .main-sidebar .sidebar-menu > li > a .fab,
 body.sidebar-mini .main-sidebar .sidebar-menu > li > a .fal {

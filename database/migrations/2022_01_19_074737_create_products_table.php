@@ -19,14 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('price');
-            $table->string('warna');
             $table->integer('weight');
             $table->integer('quantity')->default(false);
             $table->text('description')->nullable();
-            $table->timestamp('publish_at');
             $table->boolean('is_delete')->default(false);
             $table->boolean('is_discount')->default(false);
-
             $table->timestamps();
         });
     }

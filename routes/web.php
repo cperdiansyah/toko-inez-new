@@ -36,17 +36,25 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::view('/dashboard', "dashboard")->name('dashboard');
 
     /* User Sidebar */
-    Route::get('/user', [UserController::class, "index_view"])->name('user');
+    Route::get('/admin/user', [UserController::class, "index_view"])->name('user');
 
-    Route::view('/user/new', "pages.user.user-new")->name('user.new');
+    Route::view('/admin/user/new', "pages.user.user-new")->name('user.new');
 
-    Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
+    Route::view('/admin/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
     /* Product Sidebar */
 
-    Route::get('/product', [ProductController::class, "index"])->name('product');
+    Route::get('/admin/product', [ProductController::class, "index"])->name('product');
 
-    Route::view('/product/new', "pages.product.product-new")->name('product.new');
+    Route::view('/admin/product/new', "pages.product.product-new")->name('product.new');
 
-    Route::view('/product/edit/{productId}', "pages.product.product-edit")->name('product.edit');
+    Route::view('/admin/product/edit/{productId}', "pages.product.product-edit")->name('product.edit');
+
+    /* Category Sidebar */
+    Route::get('/admin/category', [Cate::class, "index"])->name('product');
+
+    Route::view('/admin/category/new', "pages.product.product-new")->name('product.new');
+
+    Route::view('/admin/category/edit/{productId}', "pages.product.product-edit")->name('product.edit');
+
 });

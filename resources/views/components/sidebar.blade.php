@@ -9,7 +9,7 @@ $links = [
         'href' => [
             [
                 'section_text' => 'Pengguna',
-                'section_list' => [['href' => 'user', 'text' => 'Data Pengguna'], ['href' => 'user.new', 'text' => 'Buat Pengguna']],
+                'section_list' => [['href' => 'user', 'text' => 'Data Pengguna'], ['href' => 'user.new', 'text' => 'Tambah Pengguna']],
                 'icon' => 'group',
             ],
         ],
@@ -20,11 +20,22 @@ $links = [
         'href' => [
             [
                 'section_text' => 'Produk',
-                'section_list' => [['href' => 'product', 'text' => 'Data Produk'], ['href' => 'product.new', 'text' => 'Buat Produk Baru']],
+                'section_list' => [['href' => 'product', 'text' => 'Data Produk'], ['href' => 'product.new', 'text' => 'Tambah Produk Baru']],
                 'icon' => 'inventory_2',
             ],
         ],
         'text' => 'Produk',
+        'is_multi' => true,
+    ],
+    [
+        'href' => [
+            [
+                'section_text' => 'Kategori',
+                'section_list' => [['href' => 'category', 'text' => 'Data Kategori'], ['href' => 'category.new', 'text' => 'Tambah Kategori Baru']],
+                'icon' => 'inventory_2',
+            ],
+    ],
+        'text' => 'Kategori',
         'is_multi' => true,
     ],
 ];

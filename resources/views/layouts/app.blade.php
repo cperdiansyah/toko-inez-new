@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/notyf/notyf.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_admin.css') }}">
 
     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
         media="all">
@@ -36,6 +37,7 @@
         rel="stylesheet">
 
     <livewire:styles />
+    <link rel="shortcut icon" href="/images/favicon.jpeg" type="image/x-icon">
 
     <!-- Scripts -->
     <script defer src="{{ asset('vendor/alpine.js') }}"></script>
@@ -71,21 +73,22 @@
             </div>
         </div>
     </div>
+    @stack('js')
 
     @stack('modals')
 
     <!-- General JS Scripts -->
     <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
-    <script defer async src="{{ asset('stisla/js/modules/popper.js') }}"></script>
-    <script defer async src="{{ asset('stisla/js/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/popper.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/tooltip.js') }}"></script>
     <script src="{{ asset('stisla/js/modules/bootstrap.min.js') }}"></script>
-    <script defer src="{{ asset('stisla/js/modules/jquery.nicescroll.min.js') }}"></script>
-    <script defer src="{{ asset('stisla/js/modules/moment.min.js') }}"></script>
-    <script defer src="{{ asset('stisla/js/modules/marked.min.js') }}"></script>
-    <script defer src="{{ asset('vendor/notyf/notyf.min.js') }}"></script>
-    <script defer src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
-    <script defer src="{{ asset('stisla/js/modules/chart.min.js') }}"></script>
-    <script defer src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/moment.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/marked.min.js') }}"></script>
+    <script src="{{ asset('vendor/notyf/notyf.min.js') }}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/chart.min.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 
     <script src="{{ asset('stisla/js/stisla.js') }}"></script>
     <script src="{{ asset('stisla/js/scripts.js') }}"></script>

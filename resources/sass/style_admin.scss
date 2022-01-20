@@ -1,0 +1,13 @@
+li.dropdown > a > i {
+    &.material-icons-outlined,
+    &.material-icons {
+        font-size: 1.3rem;
+        margin-left: 4px;
+    }
+}
+
+.sidebar-mini {
+    ul.dropdown-menu {
+        box-shadow: 0.3rem 0.3rem 0.7rem rgb(0 0 0 / 12%) !important;
+    }
+}
