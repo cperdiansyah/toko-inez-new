@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('category_id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->integer('price');
-            $table->integer('weight');
+            $table->float('price')->default(0);
+            $table->integer('weight')->default(0);
             $table->integer('quantity')->default(false);
             $table->text('description')->nullable();
             $table->boolean('is_delete')->default(false);

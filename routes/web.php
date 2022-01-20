@@ -51,10 +51,10 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::view('/admin/product/edit/{productId}', "pages.product.product-edit")->name('product.edit');
 
     /* Category Sidebar */
-    Route::get('/admin/category', [Cate::class, "index"])->name('product');
+    Route::get('/admin/category', [Cate::class, "index"])->name('category');
 
-    Route::view('/admin/category/new', "pages.product.product-new")->name('product.new');
+    Route::view('/admin/category/new', "pages.category.category-new")->name('category.new');
 
-    Route::view('/admin/category/edit/{productId}', "pages.product.product-edit")->name('product.edit');
+    Route::view('/admin/category/edit/{categoryId}', "pages.category.category-edit")->name('category.edit');
 
 });
