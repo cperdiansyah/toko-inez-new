@@ -15,6 +15,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        return view('pages.category.category-data', [
+            'categories' => Category::class
+        ]);
     }
 
     /**

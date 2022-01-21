@@ -2,7 +2,7 @@
 $links = [
     [
         'href' => 'dashboard',
-        'text' => 'Dashboard',
+        'text_group' => 'Dashboard',
         'is_multi' => false,
     ],
     [
@@ -13,7 +13,18 @@ $links = [
                 'icon' => 'group',
             ],
         ],
-        'text' => 'Pengguna',
+        'text_group' => 'Pengguna',
+        'is_multi' => true,
+    ],
+    [
+        'href' => [
+            [
+                'section_text' => 'Kategori',
+                'section_list' => [['href' => 'category', 'text' => 'Data Kategori'], ['href' => 'category.new', 'text' => 'Tambah Kategori Baru']],
+                'icon' => 'category',
+            ],
+        ],
+        'text_group' => 'Produk',
         'is_multi' => true,
     ],
     [
@@ -24,19 +35,9 @@ $links = [
                 'icon' => 'inventory_2',
             ],
         ],
-        'text' => 'Produk',
+        'text_group' => 'Produk',
         'is_multi' => true,
-    ],
-    [
-        'href' => [
-            [
-                'section_text' => 'Kategori',
-                'section_list' => [['href' => 'category', 'text' => 'Data Kategori'], ['href' => 'category.new', 'text' => 'Tambah Kategori Baru']],
-                'icon' => 'inventory_2',
-            ],
-    ],
-        'text' => 'Kategori',
-        'is_multi' => true,
+        'is_group' => true,
     ],
 ];
 $navigation_links = array_to_object($links);
@@ -44,9 +45,11 @@ $navigation_links = array_to_object($links);
 
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
+
         <div class="sidebar-brand">
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </div>
+
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
                 <img class="d-inline-block" src="{{ asset('/images/content/logo-inez.png') }}" alt="logo-toko-inez"
@@ -55,15 +58,22 @@ $navigation_links = array_to_object($links);
         </div>
         @foreach ($navigation_links as $link)
             <ul class="sidebar-menu">
-                <li class="menu-header">{{ $link->text }}</li>
+
                 @if (!$link->is_multi)
+                    <li class="menu-header">{{ $link->text_group }}</li>
                     <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route($link->href) }}">
                             <i class="fas fa-fire"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    </li>
                 @else
+                    @if (!isset($link->is_group))
+                        <li class="menu-header">{{ $link->text_group }}
+
+                        </li>
+                    @endif
                     @foreach ($link->href as $section)
                         @php
                             $routes = collect($section->section_list)
@@ -71,7 +81,6 @@ $navigation_links = array_to_object($links);
                                     return Request::routeIs($child->href);
                                 })
                                 ->toArray();
-                            
                             $is_active = in_array(true, $routes);
                         @endphp
 

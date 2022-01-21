@@ -46,6 +46,24 @@ trait WithDataTable
                     ])
                 ];
                 break;
+            case 'category':
+                $category = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.category',
+                    "categories" => $category,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('category.new'),
+                            'create_new_text' => 'Tambah Kategori Baru',
+                            'export' => '#',
+                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
 
             default:
                 # code...

@@ -73,9 +73,11 @@
                  style="left:-120px">
 
                  @if (auth()->user()->is_admin == 1)
-                     <li><a class="dropdown-item" href="/dashboard">
+                     <li><a class="dropdown-item" href="{{ route('dashboard') }}">
                              <i class="fas fa-desktop pr-3 icon"></i>
-                             </i>Dashboard Admin</a>
+
+                             Dashboard Admin
+                         </a>
                      </li>
                      <hr class="dropdown-divider">
                  @endif
@@ -88,13 +90,14 @@
                              {{ $link->title }}</a>
                      </li>
                  @endforeach
+
                  <li>
                      <form method="POST" action="{{ route('logout') }}">
                          @csrf
 
                          <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
                              onclick="event.preventDefault();this.closest('form').submit();">
-                             <i class="fas fa-sign-out-alt"></i> Keluar
+                             <i class="fas fa-sign-out-alt pr-3"></i> Keluar
                          </a>
                      </form>
                  </li>

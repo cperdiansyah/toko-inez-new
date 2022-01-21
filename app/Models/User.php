@@ -75,6 +75,10 @@ class User extends Authenticatable
             : static::where('name', 'like', '%' . $query . '%')
             ->orWhere('email', 'like', '%' . $query . '%');
     }
+    public function hasRole($role)
+    {
+        return $this->roles()->where('is_admin', $role)->count() == 1;
+    }
     public function sluggable(): array
     {
         return [

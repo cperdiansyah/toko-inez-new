@@ -27,6 +27,6 @@ class Admin
             }
         }
 
-        return redirect('/')->with('loginAdminError', "Hanya Admin yang bisa mengakses");
+        return redirect('/')->with('loginAdminError', "Gagal mendapatkan akses, silahkan login dengan akses yang sesuai");
     }
 }

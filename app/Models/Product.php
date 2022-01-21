@@ -20,11 +20,8 @@ class Product extends Model
     public function sluggable(): array
     {
         return [
-            'username' => [
-                'source' => 'name',
-                'separator' => '',
-                'maxLength' => 12,
-
+            'slug' => [
+                'source' => 'name'
             ]
         ];
     }

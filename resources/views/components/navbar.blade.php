@@ -47,7 +47,10 @@ $user = auth()->user();
 
                     <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
                         onclick="event.preventDefault();this.closest('form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                        <span class="material-icons-outlined ">
+                            logout
+                        </span>
+                         Logout
                     </a>
                 </form>
             </div>

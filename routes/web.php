@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 /* Route Guest */
 /* Guest user can access */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');;
 Route::get('/products', function () {
     return view('customer.products', [
         'title' => 'Product',
@@ -32,8 +33,8 @@ Route::get('/products', function () {
     ]);
 });
 
-Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
-    Route::view('/dashboard', "dashboard")->name('dashboard');
+Route::group(["middleware" => ['admin']], function () {
+    Route::view('/admin/dashboard', "dashboard")->name('dashboard');
 
     /* User Sidebar */
     Route::get('/admin/user', [UserController::class, "index_view"])->name('user');
@@ -42,6 +43,13 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
 
     Route::view('/admin/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
+    /* Category Sidebar */
+    Route::get('/admin/category', [CategoryController::class, "index"])->name('category');
+
+    Route::view('/admin/category/new', "pages.category.category-new")->name('category.new');
+
+    Route::view('/admin/category/edit/{categoryId}', "pages.category.category-edit")->name('category.edit');
+    
     /* Product Sidebar */
 
     Route::get('/admin/product', [ProductController::class, "index"])->name('product');
@@ -50,11 +58,5 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
 
     Route::view('/admin/product/edit/{productId}', "pages.product.product-edit")->name('product.edit');
 
-    /* Category Sidebar */
-    Route::get('/admin/category', [Cate::class, "index"])->name('category');
-
-    Route::view('/admin/category/new', "pages.category.category-new")->name('category.new');
-
-    Route::view('/admin/category/edit/{categoryId}', "pages.category.category-edit")->name('category.edit');
-
+    
 });
