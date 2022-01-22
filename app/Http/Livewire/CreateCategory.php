@@ -21,10 +21,15 @@ class CreateCategory extends Component
 
     protected function getRules()
     {
+        $imageRules = ($this->action == "updateCategory") ? [
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:5120',
+        ] : [
+            'image' => 'image|mimes:png,jpeg,jpg|max:5120| ',
+        ];
 
         return array_merge([
             'category.name' => 'required|min:3',
-            'image' => 'image|file|max:5120|mimes:png,jpeg,jpg ',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:5120',
         ]);
     }
 
@@ -34,13 +39,15 @@ class CreateCategory extends Component
         $this->resetErrorBag();
         $this->validate();
 
-        $filePath = $this->image->store('/images/category');
-
+        /* Create Slug */
         $this->category['slug'] = $this->slug;
 
-        $this->category['image'] = $filePath;
 
-        dd($this->category);
+        /* Get image path and store to public storage   */
+        if (isset($this->image)) {
+            $filePath = $this->image->store('/images/category');
+            $this->category['image'] = $filePath;
+        }
 
         Category::create($this->category);
 
@@ -50,36 +57,49 @@ class CreateCategory extends Component
         $this->reset('image');
     }
 
-    /* public function updateCategory()
+    public function updateCategory()
     {
         $this->resetErrorBag();
         $this->validate();
 
-        $this->category['slug'] = $this->slug;
+        /* Generate slug. But first compare if they have same name between field in database and category name form, slug will not be generate  */
 
+        if ($this->category->name != $this->category->getOriginal('name')) {
+            $this->category['slug'] = $this->generateSlug();
+        }
+
+        /* Get image path and store to public storage   */
+        $this->category['image'] = $this->category->getOriginal('image');
+        if (isset($this->image)) {
+            $filePath = $this->image->store('/images/category');
+            $this->category['image'] = $filePath;
+        }
 
         Category::query()
             ->where('id', $this->categoryId)
             ->update([
                 "name" => $this->category->name,
                 "slug" => $this->category->slug,
+                "image" => $this->category['image']
             ]);
 
         $this->emit('saved');
+        redirect()->to(route('category'));
     }
- */
+
     public function mount()
     {
         if (!$this->category && $this->categoryId) {
             $this->category = Category::find($this->categoryId);
         }
-
         $this->button = create_button($this->action, "Category");
     }
 
     public function generateSlug()
     {
         $this->slug = SlugService::createSlug(Category::class, 'slug', $this->category->name);
+
+        return $this->slug;
     }
 
     public function render()

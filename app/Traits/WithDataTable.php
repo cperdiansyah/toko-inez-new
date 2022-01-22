@@ -48,6 +48,7 @@ trait WithDataTable
                 break;
             case 'category':
                 $category = $this->model::search($this->search)
+                    ->where('is_delete', '=', false)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
 

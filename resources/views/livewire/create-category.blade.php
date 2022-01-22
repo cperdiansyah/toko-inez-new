@@ -22,12 +22,18 @@
                 x-on:livewire-upload-progress="progress = $event.detail.progress">
 
                 <x-jet-label for="image" value="{{ __('Gambar Kategori') }}" />
-                <small>Gunakan gambar dengan extensi jpg, jpeg atau png maksimal 5MB </small>
+                <small>Gunakan gambar dengan extensi jpg, jpeg atau png dengan ukuran maksimal 5MB </small>
+
                 <!-- File Input -->
                 <x-jet-input name="image" type="file" accept="image/*" id="image"
                     class="mt-1 block w-full form-control shadow-none" wire:model="image" />
-                @if ($action == 'updateCategory')
+
+                @if ($action != 'createCategory')
+                    {{-- components only show when update category --}}
                     <small class="text-danger">*)Kosongkan jika tidak ingin diubah</small>
+                    <x-jet-input id="name" type="hidden" class="mt-1 block w-full form-control shadow-none"
+                        wire:model.defer="category.slug" />
+
                 @endif
 
 
@@ -45,8 +51,10 @@
                             class="show-upload-image shadow" />
 
                     @elseif($action == 'updateCategory')
-                        <img src="{{ asset('storage/' . $category->image) }}" alt="Category Uploading Image "
-                            class="show-upload-image shadow" />
+
+                        <img src="{{ isset($category->image) ? asset('storage/' . $category->image) : asset('storage/' . 'images/no_image_available.jpg') }}"
+                            alt="Category Uploading Image " class="show-upload-image shadow" />
+
                     @endif
 
                 </div>

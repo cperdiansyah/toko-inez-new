@@ -18,20 +18,23 @@ class Main extends Component
     public $sortAsc = false;
     public $search = '';
 
-    protected $listeners = [ "deleteItem" => "delete_item" ];
+    protected $listeners = [
+        "deleteItem" => "delete_item",
+        "softDelete" => "soft_delete"
+    ];
 
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
-            $this->sortAsc = ! $this->sortAsc;
+            $this->sortAsc = !$this->sortAsc;
         } else {
             $this->sortAsc = true;
         }
 
         $this->sortField = $field;
     }
-    
-    public function delete_item ($id)
+
+    public function delete_item($id)
     {
         $data = $this->model::find($id);
 
@@ -44,6 +47,27 @@ class Main extends Component
         }
 
         $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data " . $this->name . " berhasil dihapus!"
+        ]);
+    }
+
+    public function soft_delete($id)
+    {
+        $data = $this->model::find($id);
+
+        if (!$data) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Gagal menghapus data " . $this->name
+            ]);
+            return;
+        }
+        
+        $data->is_delete = true;
+        $data->save();
+
         $this->emit("deleteResult", [
             "status" => true,
             "message" => "Data " . $this->name . " berhasil dihapus!"

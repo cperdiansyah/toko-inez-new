@@ -17440,16 +17440,16 @@ function dataTableController(id) {
       var _this = this;
 
       Swal.fire({
-        title: 'Apa kamu yakin?',
+        title: "Apa kamu yakin?",
         text: "Data yang dihapus tidak dapat dikembalikan!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Silahkan hapus!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, Silahkan hapus!"
       }).then(function (result) {
         if (result.isConfirmed) {
-          Livewire.emit('deleteItem', _this.id);
+          Livewire.emit("softDelete", _this.id);
         }
       });
     }
@@ -17459,11 +17459,11 @@ function dataTableController(id) {
 function dataTableMainController() {
   return {
     setCallback: function setCallback() {
-      Livewire.on('deleteResult', function (result) {
+      Livewire.on("deleteResult", function (result) {
         if (result.status) {
-          Swal.fire('Deleted!', result.message, 'success');
+          Swal.fire("Deleted!", result.message, "success");
         } else {
-          Swal.fire('Error!', result.message, 'error');
+          Swal.fire("Error!", result.message, "error");
         }
       });
     }
