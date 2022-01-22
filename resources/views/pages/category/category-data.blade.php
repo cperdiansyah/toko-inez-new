@@ -12,6 +12,6 @@
     </x-slot>
 
     <div>
-        <livewire:table.main name="category" :model="$categories" />
+        <livewire:table.main name="category" :model="$categories" :sortAsc="true" />
     </div>
 </x-app-layout>

@@ -21,12 +21,6 @@ class CreateCategory extends Component
 
     protected function getRules()
     {
-        $imageRules = ($this->action == "updateCategory") ? [
-            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:5120',
-        ] : [
-            'image' => 'image|mimes:png,jpeg,jpg|max:5120| ',
-        ];
-
         return array_merge([
             'category.name' => 'required|min:3',
             'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:5120',
@@ -89,7 +83,9 @@ class CreateCategory extends Component
 
     public function mount()
     {
+
         if (!$this->category && $this->categoryId) {
+
             $this->category = Category::find($this->categoryId);
         }
         $this->button = create_button($this->action, "Category");

@@ -9,19 +9,21 @@
                     </a>
                 </th>
                 <th>
-                    <a role="button" href="#">Nama Kategori
+                    <a wire:click.prevent="sortBy('name')" role="button" href="#">
+                        Nama Kategori
                         @include('components.sort-icon', ['field' => 'name'])
                     </a>
                 </th>
 
-                <th>
-                    <a wire:click.prevent="sortBy('name')" role="button" href="#">Jumlah produk
-                        @include('components.sort-icon', ['field' => 'name'])
+                <th class="text-center">
+                    <a wire:click.prevent="sortBy('products_count')" role="button" href="#">
+                        Jumlah produk
+                        @include('components.sort-icon', ['field' => 'products_count'])
                     </a>
+                    {{-- Jumlah produk --}}
                 </th>
                 <th class="text-center">
-                    <a role="button" href="#">Foto
-                    </a>
+                    Foto
                 </th>
 
                 <th>Action</th>
@@ -32,7 +34,8 @@
                 <tr x-data="window.__controller.dataTableController({{ $category->id }})">
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
-                    <td> Belum dibuat</td>
+
+                    <td class="text-center"> {{ $category->products->count() }}</td>
                     <td>
                         @if (isset($category->image))
                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}"
