@@ -14,6 +14,16 @@ class Category extends Model
     
     protected $guarded = ['id'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public static function search($query)
     {
         return empty($query) ? static::query()

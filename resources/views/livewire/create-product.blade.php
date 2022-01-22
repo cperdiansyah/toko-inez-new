@@ -75,3 +75,18 @@
 
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
 </div>
+
+
+{{-- @push('js')
+    <script>
+        window.livewire.on('file-dropped', () => {
+            let inputField = document.getElementById('logo')
+            let file = inputField.files[0]
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                window.livewire.emit('fileUpload', reader.result)
+            }
+            reader.readAsDataURL(file);
+        })
+    </script>
+@endpush --}}
