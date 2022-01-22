@@ -12,6 +12,8 @@
     </x-slot>
 
     <div>
-        <livewire:create-user action="updateUser" :userId="request()->userId" />
+
+        <livewire:create-category action="updateCategory" :categoryId="request()->categoryId" />
+
     </div>
 </x-app-layout>

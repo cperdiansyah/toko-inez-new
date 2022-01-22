@@ -17,6 +17,7 @@ mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/style_admin.scss", "public/css")
     .browserSync({
         proxy: "http://toko-inez-new.test/",
+        open: false,
         files: ["**/*.js", "**/*.css", "**/*.php"]
     });
 /* .postCss("resources/css/tailwind.css", "public/css", [

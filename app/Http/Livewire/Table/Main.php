@@ -30,7 +30,7 @@ class Main extends Component
 
         $this->sortField = $field;
     }
-
+    
     public function delete_item ($id)
     {
         $data = $this->model::find($id);

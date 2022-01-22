@@ -35,7 +35,6 @@ class CreateUser extends Component
 
     public function createUser()
     {
-
         $this->resetErrorBag();
         $this->validate();
 

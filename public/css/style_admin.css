@@ -8,3 +8,22 @@ li.dropdown > a > i.material-icons {
   box-shadow: 0.3rem 0.3rem 0.7rem rgba(0, 0, 0, 0.12) !important;
 }
 
+.table-image {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 10px auto;
+}
+
+.shadow {
+  box-shadow: 0.3rem 0.3rem 0.7rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.show-upload-image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+

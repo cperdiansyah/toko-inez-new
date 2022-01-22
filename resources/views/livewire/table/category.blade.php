@@ -9,17 +9,17 @@
                     </a>
                 </th>
                 <th>
-                    <a wire:click.prevent="sortBy('name')" role="button" href="#">Nama Kategori
+                    <a role="button" href="#">Nama Kategori
                         @include('components.sort-icon', ['field' => 'name'])
                     </a>
                 </th>
 
                 <th>
                     <a wire:click.prevent="sortBy('name')" role="button" href="#">Jumlah produk
-                        {{-- @include('components.sort-icon', ['field' => 'name']) --}}
+                        @include('components.sort-icon', ['field' => 'name'])
                     </a>
                 </th>
-                <th>
+                <th class="text-center">
                     <a role="button" href="#">Foto
                     </a>
                 </th>
@@ -33,13 +33,24 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td> Belum dibuat</td>
-                    <td>{{ $category->image }}</td>
+                    <td>
+                        @if (isset($category->image))
+                            <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}"
+                                width="100" class="table-image shadow" loading="lazy">
+
+                        @else
+                            <img src="{{ asset('storage/' . 'images/no_image_available.jpg') }}"
+                                alt="{{ $category->name }}" width="100" class="table-image shadow" loading="lazy">
+                        @endif
+                    </td>
 
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="/product/edit/{{ $category->id }}" class="mr-3"><i
-                                class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" href="/admin/category/edit/{{ $category->id }}" class="mr-3"><i
+                                class="fa fa-16px fa-pen"></i>
+                        </a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i
-                                class="fa fa-16px fa-trash text-red-500"></i></a>
+                                class="fa fa-16px fa-trash text-red-500"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
