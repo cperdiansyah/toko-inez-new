@@ -30,6 +30,7 @@ trait WithDataTable
 
             case 'product':
                 $product = $this->model::search($this->search)
+                    ->with('category')
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
 

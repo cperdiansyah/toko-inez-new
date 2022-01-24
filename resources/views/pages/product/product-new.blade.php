@@ -6,12 +6,12 @@
 
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Produk</a></div>
-            <div class="breadcrumb-item"><a href="{{ route('user') }}">Tambah Produk Baru</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('product') }}">Produk</a></div>
+            <div class="breadcrumb-item"><a href="#">Tambah Produk Baru</a></div>
         </div>
     </x-slot>
 
     <div>
-        <livewire:create-user action="createUser" />
+        <livewire:create-product action="createProduct" />
     </div>
 </x-app-layout>

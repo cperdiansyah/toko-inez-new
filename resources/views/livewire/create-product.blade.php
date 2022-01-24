@@ -1,63 +1,77 @@
+<x-slot name="head">
+
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 400px;
+        }
+
+    </style>
+</x-slot>
+
 <div id="form-create">
+
     <x-jet-form-section :submit="$action" class="mb-4">
         <x-slot name="title">
-            {{ __('Kategori') }}
+            {{ __('Produk') }}
         </x-slot>
 
+
         <x-slot name="description">
-            {{ __('Lengkapi data berikut dan submit untuk membuat atau mengubah kategori produk') }}
+            {{ __('Lengkapi data berikut dan submit untuk menambahkan atau mengubah produk') }}
         </x-slot>
+
+
 
         <x-slot name="form">
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="name" value="{{ __('Nama Kategori') }}" />
+                <x-jet-label for="name" value="{{ __('Nama Produk') }}" />
                 <x-jet-input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                    wire:model.defer="category.name" />
-                <x-jet-input-error for="category.name" class="mt-2" />
+                    wire:model.defer="product.name" />
+                <x-jet-input-error for="product.name" class="mt-2" />
             </div>
 
-            <div class="form-group col-span-6 sm:col-span-5" x-data="{ isUploading: false, progress: 0 }"
-                x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false"
-                x-on:livewire-upload-error="isUploading = false"
-                x-on:livewire-upload-progress="progress = $event.detail.progress">
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="roleUser" value="{{ __('Kategori') }}" />
 
-                <x-jet-label for="image" value="{{ __('Gambar Kategori') }}" />
-                <small>Gunakan gambar dengan extensi jpg, jpeg atau png dengan ukuran maksimal 5MB </small>
+                <select class="form-control mt-1 block w-full form-control shadow-none" id="category_id"
+                    wire:model="product.category_id">
 
-                <!-- File Input -->
-                <x-jet-input name="image" type="file" accept="image/*" id="image"
-                    class="mt-1 block w-full form-control shadow-none" wire:model="image" />
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="product.category_id" class="mt-2" />
+            </div>
 
-                @if ($action != 'createCategory')
-                    {{-- components only show when update category --}}
-                    <small class="text-danger">*)Kosongkan jika tidak ingin diubah</small>
-                    <x-jet-input id="name" type="hidden" class="mt-1 block w-full form-control shadow-none"
-                        wire:model.defer="category.slug" />
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="price" value="{{ __('Harga Produk') }}" />
+                <x-jet-input id="price" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="product.price" />
+                <x-jet-input-error for="product.price" class="mt-2" />
+            </div>
 
-                @endif
+            <div class="form-group col-span-3">
+                <x-jet-label for="weight" value="{{ __('Berat Produk (Gram)') }}" />
+                <x-jet-input id="weight" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="product.weight" />
+                <x-jet-input-error for="product.weight" class="mt-2" />
+            </div>
 
+            <div class="form-group col-span-3 sm:col-span-2">
+                <x-jet-label for="quantity" value="{{ __('Stok Produk') }}" />
+                <x-jet-input id="quantity" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="product.quantity" />
+                <x-jet-input-error for="product.quantity" class="mt-2" />
+            </div>
 
-                <!-- Progress Bar -->
-                <div x-show="isUploading">
-                    <progress max="100" x-bind:value="progress"></progress>
-                </div>
-                @error('image') <p class="error">{{ $message }}</p> @enderror
+            <div class="form-group col-span-6 ">
+                <x-jet-label for="price" value="{{ __('Deskripsi Produk') }}" />
 
-                <!-- Show  Upload Image -->
-                <div class="mt-3">
+                <textarea id="editor" name="description" wire:model.defer="product.description" col="30"></textarea>
 
-                    @if ($image)
-                        <img src="{{ $image->temporaryUrl() }}" alt="Category Uploading Image "
-                            class="show-upload-image shadow" />
+                <x-jet-input-error for="product.description" class="mt-2" />
+            </div>
 
-                    @elseif($action == 'updateCategory')
-
-                        <img src="{{ isset($category->image) ? asset('storage/' . $category->image) : asset('storage/' . 'images/no_image_available.jpg') }}"
-                            alt="Category Uploading Image " class="show-upload-image shadow" />
-
-                    @endif
-
-                </div>
         </x-slot>
 
         <x-slot name="actions">
@@ -76,17 +90,25 @@
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
 </div>
 
-
-{{-- @push('js')
+@push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
     <script>
-        window.livewire.on('file-dropped', () => {
-            let inputField = document.getElementById('logo')
-            let file = inputField.files[0]
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                window.livewire.emit('fileUpload', reader.result)
-            }
-            reader.readAsDataURL(file);
-        })
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'bold', 'italic', 'blockQuote', 'link', '|',
+                        'outdent', 'indent', '|',
+                        'bulletedList', 'numberedList', '|',
+                        'undo', 'redo'
+                    ],
+
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
-@endpush --}}
+
+@endpush

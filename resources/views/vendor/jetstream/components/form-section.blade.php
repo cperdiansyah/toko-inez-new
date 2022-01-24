@@ -9,8 +9,8 @@
     <div class="mt-5 md:mt-0 md:col-span-2">
         <form wire:submit.prevent="{{ $submit }}" enctype="multipart/form-data">
             <div class="shadow overflow-hidden sm:rounded-md">
-                <div class="px-4 py-5 bg-white sm:p-6">
-                    <div class="grid grid-cols-6 gap-6">
+                <div class="px-4 pt-5 pb-3 bg-white sm:p-6">
+                    <div class="grid grid-cols-6 gap-x-6">
                         {{ $form }}
                     </div>
                 </div>

@@ -47,6 +47,11 @@
     <script src="{{ asset('js/vendor~utils-1.js') }}" defer></script>
     <script src="{{ asset('js/manifest.js') }}" defer></script>
 
+
+    @isset($head)
+        {{ $head }}
+    @endisset
+
 </head>
 
 <body class="antialiased">

@@ -24,6 +24,9 @@ mix.js("resources/js/app.js", "public/js")
         require("postcss-import"),
         require("tailwindcss")
     ]) */
+    
 
 mix.extract(["axios"], "js/vendor~utils-1.js");
+mix.extract(["@ckeditor/ckeditor5-build-inline"], "js/ck-editor.js");
 mix.extract();
+ 

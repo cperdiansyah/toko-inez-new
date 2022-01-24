@@ -14,6 +14,11 @@
                     </a>
                 </th>
                 <th>
+                    <a wire:click.prevent="sortBy('is_discount')" role="button" href="#">Kategori
+                        @include('components.sort-icon', ['field' => 'is_discount'])
+                    </a>
+                </th>
+                <th>
                     <a wire:click.prevent="sortBy('price')" role="button" href="#">Harga
                         @include('components.sort-icon', ['field' => 'price'])
                     </a>
@@ -24,11 +29,7 @@
                         @include('components.sort-icon', ['field' => 'quantity'])
                     </a>
                 </th>
-                <th>
-                    <a wire:click.prevent="sortBy('is_discount')" role="button" href="#">Diskon
-                        @include('components.sort-icon', ['field' => 'is_discount'])
-                    </a>
-                </th>
+
 
                 <th>Action</th>
             </tr>
@@ -37,18 +38,14 @@
             @foreach ($products as $product)
                 <tr x-data="window.__controller.dataTableController({{ $product->id }})">
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->name }}
+                        {{ $product->is_discount ? '<span class="text-danger font-weight-bold ml-3">[Sedang Diskon]</span>' : '' }}
+                    </td>
+                    <td style="max-width:250px">{{ $product->category->name }}</td>
+
                     <td>@convertMoney($product->price)</td>
                     <td>{{ $product->quantity }}</td>
 
-                    @if ($product->is_discount)
-
-                        <td class="font-weight-bold text-danger">{{ $product->is_discount }}</td>
-
-                    @else
-                        <td class="">Tidak</td>
-
-                    @endif
 
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/admin/product/edit/{{ $product->id }}" class="mr-3"><i

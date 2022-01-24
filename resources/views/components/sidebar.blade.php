@@ -39,6 +39,17 @@ $links = [
         'is_multi' => true,
         'is_group' => true,
     ],
+    [
+        'href' => [
+            [
+                'section_text' => 'Transaksi',
+                'section_list' => [['href' => 'category', 'text' => 'Data Kategori'], ['href' => 'category.new', 'text' => 'Tambah Kategori Baru']],
+                'icon' => 'point_of_sale',
+            ],
+        ],
+        'text_group' => 'Transaksi',
+        'is_multi' => true,
+    ],
 ];
 $navigation_links = array_to_object($links);
 @endphp

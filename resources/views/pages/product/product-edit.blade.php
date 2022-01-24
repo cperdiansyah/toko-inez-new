@@ -6,8 +6,8 @@
 
         <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Produk</a></div>
-            <div class="breadcrumb-item"><a href="{{ route('user') }}">Edit Produk</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('product') }}">Produk</a></div>
+            <div class="breadcrumb-item"><a href="#">Edit Produk</a></div>
         </div>
     </x-slot>
 

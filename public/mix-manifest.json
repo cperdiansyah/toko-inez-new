@@ -3,6 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css",
     "/css/style_admin.css": "/css/style_admin.css",
+    "/js/ck-editor.js": "/js/ck-editor.js",
     "/js/manifest.js": "/js/manifest.js",
     "/js/vendor~utils-1.js": "/js/vendor~utils-1.js"
 }
